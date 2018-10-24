@@ -78,8 +78,8 @@ public class CartController extends HttpServlet  {
 	}
 
 	@GET
-	@Path("/username")
-	public Response getUserShoppingCart(@PathParam("param") String user) {
+	@Path("/{username}")
+	public Response getUserShoppingCart(@PathParam("username") String user) {
 		String output = cartService.getUserShoppingCart(user);
 		return Response.status(200).entity(output).build();
 	}
