@@ -49,8 +49,8 @@ public class Cart {
     public String toString() {
 
         return String.format(
-                "Cart[cartId='%d',customerUsername='%s',items='%s']",
-                cartId, items);
+                "Cart[cartId='%d',customerUsername='%s']",
+                cartId, customerUsername);
     }
 
 }

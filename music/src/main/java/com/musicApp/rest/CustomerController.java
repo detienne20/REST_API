@@ -66,8 +66,8 @@ public class CustomerController extends HttpServlet  {
 
 	@POST 
 	public Response createCustomer(@QueryParam("fname") String fname, @QueryParam("lname")  String lname,@QueryParam("username") String username,@QueryParam("email") String email) {
-		String stat=customerService.createCustomer(fname,lname,username, email); 
-		if (stat==""){
+		int stat=customerService.createCustomer(fname,lname,username, email); 
+		if (stat!=0){
 			return Response.status(409).build(); 
 		}
 		return Response.status(200).build(); 

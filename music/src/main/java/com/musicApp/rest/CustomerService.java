@@ -40,8 +40,8 @@ public class CustomerService {
 		return retString;
 	}
 
-	public String createCustomer(String fname,String lname,String username,String email) {
-		String result=customerDAO.createCustomer(fname,lname,username,email); 
+	public int createCustomer(String fname,String lname,String username,String email) {
+		int result=customerDAO.createCustomer(fname,lname,username,email); 
 		return result; 
 	}
 

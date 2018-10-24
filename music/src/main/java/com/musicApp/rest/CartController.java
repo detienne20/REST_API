@@ -57,37 +57,37 @@ public class CartController extends HttpServlet  {
 
 	@POST
 	@Path("/{productId}/{username}")
-	public Response AddItem(@QueryParam("productId") int productId, @QueryParam("username") String username){
-		cartService.addItemToCart(productId, username); 
+	public Response AddItem(@QueryParam("productId") int id, @QueryParam("username") String user){
+		cartService.addItemToCart(id, user); 
 		return Response.status(200).build();
 
 	}
 
 	@DELETE 
 	@Path("/{cartId}/{productId}")
-	public Response removeItem(@PathParam("cartId") int cartId, @PathParam("productId") int productId) {
-			cartService.removeItem(cartId,productId); 
+	public Response removeItem(@PathParam("cartId") int cId, @PathParam("productId") int pId) {
+			cartService.removeItem(cId,pId); 
 			return Response.status(200).build();
 	}	
 
 	@PUT 
 	@Path("/purchase/{cartId}")
-	public Response BuyItem(@PathParam("param") int cartId) {
-		cartService.buyItem (cartId);
+	public Response BuyItem(@QueryParam("param") int id) {
+		cartService.buyItem (id);
 		return Response.status(200).build();
 	}
 
 	@GET
 	@Path("/username")
-	public Response getUserShoppingCart(@PathParam("param") String username) {
-		String output = cartService.getUserShoppingCart(username);
+	public Response getUserShoppingCart(@PathParam("param") String user) {
+		String output = cartService.getUserShoppingCart(user);
 		return Response.status(200).entity(output).build();
 	}
 
 	@GET 
 	@Path("/{productID}")
-	public Response getBuyers(@PathParam("param") int productId) {
-		String output = cartService.getBuyers(productId);
+	public Response getBuyers(@PathParam("param") int id) {
+		String output = cartService.getBuyers(id);
 		return Response.status(200).entity(output).build();
 	}
 

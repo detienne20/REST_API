@@ -43,7 +43,7 @@ public class CartDAO {
         int cartId=-1; 
         Collection<Cart> carts = new ArrayList<Cart>();
         this.jdbcTemplate.query(
-                "SELECT cartId FROM carts WHERE username=? ", new Object[] {username},
+                "SELECT * FROM carts WHERE username=? ", new Object[] {username},
                 (rs, rowNum) -> new Cart(rs.getInt("cartId"))
                 ).forEach(cart -> carts.add(cart));
 
@@ -95,7 +95,7 @@ public class CartDAO {
     public Collection<Item> getCartItems(int cartId, String username){
         Collection<Item> items = new ArrayList<Item>();
         this.jdbcTemplate.query(
-                "SELECT * FROM products INNER JOIN purchase ON purchase.itemId=products.itemId INNER JOIN carts ON carts.cardId=purchase.cardId WHERE username=?", new Object[] {username},
+                "SELECT * FROM products INNER JOIN purchase ON purchase.itemId=products.itemId INNER JOIN carts ON carts.cartId=purchase.cartId WHERE cartId=? AND username= ?", new Object[] {cartId, username},
                 (rs, rowNum) -> new Item(rs.getInt("itemId"),rs.getString("name"),rs.getDouble("msrp"),rs.getDouble("salePrice"))
                     ).forEach(item -> items.add(item));
 
@@ -127,7 +127,6 @@ public class CartDAO {
     }
 
     
-	
 	/***NOTE: For simplicity, other CRUD operations have been removed from this example.***/
 
 	public DriverManagerDataSource getDataSource() {

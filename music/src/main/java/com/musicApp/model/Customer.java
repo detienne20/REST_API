@@ -11,14 +11,13 @@ public class Customer {
     private String email; 
     private int cartId;  
  
-    public Customer(int customerId, String fname, String lname,String username,String email, int cartId){
-        this.customerId = customerId;
+    public Customer(String fname, String lname,String username,String email){
         this.fname = fname;
         this.lname= lname;
         this.username= username; 
         this.email= email; 
-        this.cartId=cartId; 
     }
+
     public Customer(int customerId, String fname, String lname,String username,String email){
         this.customerId = customerId;
         this.fname = fname;
@@ -27,12 +26,16 @@ public class Customer {
         this.email= email; 
     }
 
-    public Customer(String fname, String lname,String username,String email){
+   /* public Customer(int customerId, String fname, String lname,String username,String email, int cartId){
+        this.customerId = customerId;
         this.fname = fname;
         this.lname= lname;
         this.username= username; 
         this.email= email; 
+        this.cartId=cartId; 
     }
+    */
+
 
     public Customer(String username){
         this.username= username; 
@@ -70,6 +73,7 @@ public class Customer {
         this.email= email;
     }
     
+    /*
     public int getCartId() {
         return cartId; 
     }
@@ -77,14 +81,15 @@ public class Customer {
     public void setCartId(int cartId) {
         this.cartId= cartId;
     }
+    */
 
 
     @Override
     public String toString() {
 
         return String.format(
-                "Customer[customerId='%d', fname='%s', lname='%s',username='%s',email='%s',cartId='%d']",
-                customerId, fname, lname, username,email,cartId);
+                "Customer[customerId='%d', fname='%s', lname='%s',username='%s',email='%s']",
+                customerId, fname, lname, username,email);
     }
 
 }
