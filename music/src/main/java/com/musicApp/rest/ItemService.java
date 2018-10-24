@@ -26,6 +26,7 @@ public class ItemService {
 		Collection<Item> items = itemDAO.getAllItems();
 		for (Item item : items) {
 			retString += item.toString();
+			retString += "		";
 		}
 
 		return retString;
@@ -36,6 +37,7 @@ public class ItemService {
 		Collection<Item> items = itemDAO.getItemsByKeyword(keyword);
 		for (Item item : items) {
 			retString += item.toString();
+			retString += "		";
 		}
 		return retString;
 	}
@@ -45,6 +47,7 @@ public class ItemService {
 		Collection<Item> items = itemDAO.getItemByID(id);
 		for (Item item : items) {
 			retString += item.toString();
+			retString += "		";
 		}
 
 		return retString;

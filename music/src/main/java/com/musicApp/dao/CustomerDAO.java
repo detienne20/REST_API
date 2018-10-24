@@ -41,7 +41,7 @@ public class CustomerDAO {
     public Collection<Customer> getCustomer(String username){
         Collection<Customer> customers = new ArrayList<Customer>();
         this.jdbcTemplate.query(
-                "SELECT * FROM customers where username= ?", new Object[] { username},
+                "SELECT * FROM customers WHERE username= ?", new Object[] { username},
                 (rs, rowNum) -> new Customer(rs.getInt("id"),rs.getString("fname"),rs.getString("lname"),username,rs.getString("email")) 
                     ).forEach(customer -> customers.add(customer));
 
@@ -49,11 +49,19 @@ public class CustomerDAO {
     }
 
     public int createCustomer(String fname,String lname,String username,String email) {
-        int exists=this.jdbcTemplate.queryForObject("SELECT COUNT(username) FROM customers WHERE username?",new Object[] {username} ,int.class);
-        int id= this.jdbcTemplate.queryForObject("SELECT COUNT(username) FROM customers",new Object[] {username} ,int.class);
+
+        String name=fname; 
+        String name_l=lname; 
+        String user=username; 
+        String e=email; 
+
+        int exists=this.jdbcTemplate.queryForObject("SELECT COUNT(*) FROM customers WHERE username=?",new Object[] {username} ,int.class);
+         int id= this.jdbcTemplate.queryForObject("SELECT COUNT(*) FROM customers",int.class);
+
+
+        id=(id+1); 
         if (exists==0){
-            this.jdbcTemplate.update("INSERT into customers (id,fname, lname,username, email) values (?,?)", 
-            new Object[] {id,fname, lname, email,username});
+            this.jdbcTemplate.update("INSERT INTO customers (fname, lname, username,email) VALUES (?,?,?,?)", new Object[] {name,name_l, user,e}); 
 
         }
         return exists; 

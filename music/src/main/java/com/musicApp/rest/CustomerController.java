@@ -41,7 +41,6 @@ public class CustomerController extends HttpServlet  {
 		  }
 	 }
 		  
-
 	
 	@GET
 	@Path("/hello/{param}")
@@ -65,15 +64,17 @@ public class CustomerController extends HttpServlet  {
 	}
 
 	@POST 
+	@Path("/{fname}/{lname}/{username}/{email}")
 	public Response createCustomer(@QueryParam("fname") String fname, @QueryParam("lname")  String lname,@QueryParam("username") String username,@QueryParam("email") String email) {
 		int stat=customerService.createCustomer(fname,lname,username, email); 
-		if (stat==0){
+		if (stat!=0){
 			return Response.status(409).build(); 
 		}
 		return Response.status(200).build(); 
 	}	
 
 	@PUT 
+	@Path("/{fname}/{lname}/{username}/{email}")
 	public Response updateCustomer(@QueryParam("fname") String fname, @QueryParam("lname")  String lname,@QueryParam("username") String username,@QueryParam("email") String email) {
 			customerService.updateCustomer(fname,lname,username, email); 
 			return Response.status(200).build();
@@ -84,9 +85,7 @@ public class CustomerController extends HttpServlet  {
 	public Response deleteCustomer(@PathParam("username") String username) {
 			customerService.deleteCustomer(username); 
 			return Response.status(200).build();
-	}	
-
-
-
+	}
+	
 
 }

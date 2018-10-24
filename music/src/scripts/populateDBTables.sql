@@ -78,6 +78,9 @@ INSERT INTO purchase (cartId, itemId, binaryNum) VALUES (3, 1, 0);
 INSERT INTO purchase (cartId, itemId, binaryNum) VALUES (3, 5, 0);
 
 
+UPDATE carts SET binaryNum=1 WHERE cartId= 3; 
+
+
 
 
 

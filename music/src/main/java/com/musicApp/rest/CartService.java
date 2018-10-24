@@ -54,7 +54,8 @@ public class CartService {
 		retString+=" ";
 		Collection<Item> items=cartDAO.getCartItems(cartId,username); 
 		for (Item item : items) {
-			retString += item.toString();
+			retString += item.toString2();
+			retString += "		";
 		}
 
 		return retString;
@@ -65,6 +66,7 @@ public class CartService {
 		Collection<Customer> customers=cartDAO.getBuyers(productId); 
 		for (Customer customer : customers) {
 			retString += customer.toString();
+			retString += "		";
 		}
 
 		return retString; 

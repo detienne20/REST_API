@@ -55,7 +55,7 @@ public class CartDAO {
        if (cartId!=-1){
          int count= this.jdbcTemplate.queryForObject("SELECT COUNT(cartId) FROM carts",int.class);
          count=(count+1); 
-         this.jdbcTemplate.update("INSERT into purchase (cartId, itemId,binaryNum) values (count,itemId,0"); 
+         this.jdbcTemplate.update("INSERT into purchase (cartId, itemId,binaryNum) values (count,itemId,0)"); 
         }
        else{ 
          this.jdbcTemplate.update("INSERT into carts (cartId,username,binaryNum) values (cartId,username,0)"); 
@@ -70,14 +70,14 @@ public class CartDAO {
 
     }
 
-    public void buyItem(int cartId){   
-       this.jdbcTemplate.update("UPDATE purchase SET binaryNum=? WHERE cartId=?", 1,cartId); 
-       this.jdbcTemplate.update("UPDATE carts SET binaryNum=? WHERE cartId=?", 1,cartId); 
+    public void buyItem(int id){   
+       this.jdbcTemplate.update("UPDATE purchase SET binaryNum=1 WHERE cartId=?", id); 
+       this.jdbcTemplate.update("UPDATE carts SET binaryNum=1 WHERE cartId=?", id); 
     }
 
 
     public int getCartID(String username){
-       int cartId=-1; 
+       int cId=-1; 
         Collection<Cart> carts = new ArrayList<Cart>();
         this.jdbcTemplate.query(
                 "SELECT cartId FROM carts WHERE username=? ", new Object[] {username},
@@ -85,17 +85,17 @@ public class CartDAO {
                 ).forEach(cart -> carts.add(cart));
         
        for (Cart curr : carts) {
-            cartId=curr.getCartId(); 
+            cId=curr.getCartId(); 
         }  
 
-        return cartId; 
+        return cId; 
     }
     
 
     public Collection<Item> getCartItems(int cartId, String username){
         Collection<Item> items = new ArrayList<Item>();
         this.jdbcTemplate.query(
-                "SELECT * FROM products INNER JOIN purchase ON purchase.itemId=products.itemId INNER JOIN carts ON carts.cartId=purchase.cartId WHERE cartId=? AND username= ?", new Object[] {cartId, username},
+                "SELECT * FROM products INNER JOIN purchase ON purchase.itemId=products.itemId INNER JOIN carts ON carts.cartId=purchase.cartId WHERE carts.cartId=? AND username= ?", new Object[] {cartId, username},
                 (rs, rowNum) -> new Item(rs.getInt("itemId"),rs.getString("name"),rs.getDouble("msrp"),rs.getDouble("salePrice"))
                     ).forEach(item -> items.add(item));
 

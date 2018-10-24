@@ -26,6 +26,7 @@ public class CustomerService {
 		Collection<Customer> customers = customerDAO.getAllCustomers();
 		for (Customer customer : customers) {
 			retString += customer.toString();
+			retString += "		";
 		}
 
 		return retString;
@@ -36,6 +37,7 @@ public class CustomerService {
 		Collection<Customer> customers = customerDAO.getCustomer(username);
 		for (Customer customer : customers) {
 			retString += customer.toString();
+			retString += "		";
 		}
 		return retString;
 	}

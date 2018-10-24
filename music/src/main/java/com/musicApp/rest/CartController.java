@@ -53,7 +53,7 @@ public class CartController extends HttpServlet  {
 	public String getAllCarts() {
 		return cartService.getAllCarts();
 	}
-
+ 
 
 	@POST
 	@Path("/{productId}/{username}")
@@ -65,31 +65,42 @@ public class CartController extends HttpServlet  {
 
 	@DELETE 
 	@Path("/{cartId}/{productId}")
-	public Response removeItem(@PathParam("cartId") int cId, @PathParam("productId") int pId) {
+	public Response removeItem(@QueryParam("cartId") int cId, @QueryParam("productId") int pId) {
 			cartService.removeItem(cId,pId); 
 			return Response.status(200).build();
 	}	
 
 	@PUT 
 	@Path("/purchase/{cartId}")
-	public Response BuyItem(@QueryParam("param") int id) {
+	public Response BuyItem(@QueryParam("cartId") int id) {
 		cartService.buyItem (id);
 		return Response.status(200).build();
 	}
-
+   
 	@GET
-	@Path("/{username}")
-	public Response getUserShoppingCart(@PathParam("username") String user) {
-		String output = cartService.getUserShoppingCart(user);
+	@Path("/{key}")
+	public Response Both(@PathParam("key") String key){
+		String output=""; 
+		boolean id=isInteger(key); 
+		if (id==true){
+			int num=Integer.parseInt(key);
+			output=cartService.getBuyers(num);
+		}
+		else {
+			output=cartService.getUserShoppingCart(key);
+		}
 		return Response.status(200).entity(output).build();
+
 	}
 
-	@GET 
-	@Path("/{productID}")
-	public Response getBuyers(@PathParam("param") int id) {
-		String output = cartService.getBuyers(id);
-		return Response.status(200).entity(output).build();
+	public boolean isInteger( String input ) {
+   	 try {
+       	Integer.parseInt( input );
+       	 return true;
+   	 }
+    	catch( Exception e ) {
+       	 return false;
+    	}
 	}
-
 
 }

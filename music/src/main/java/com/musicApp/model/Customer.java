@@ -57,6 +57,14 @@ public class Customer {
         this.fname = fname;
     }
 
+    public String getUsername() {
+        return username; 
+    }
+
+    public void setUsername(String username) {
+        this.username= username; 
+    }
+ 
     public String getLastname() {
         return lname;
     }
@@ -72,17 +80,6 @@ public class Customer {
     public void setEmail(String email) {
         this.email= email;
     }
-    
-    /*
-    public int getCartId() {
-        return cartId; 
-    }
-
-    public void setCartId(int cartId) {
-        this.cartId= cartId;
-    }
-    */
-
 
     @Override
     public String toString() {

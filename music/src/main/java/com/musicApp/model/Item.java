@@ -127,6 +127,12 @@ public class Item {
     public void setCartId(int cartId) {
         this.cartId=cartId; 
     }
+    
+    public String toString2() {
+        return String.format(
+                "Item[itemId='%d',name='%s',msrp='%f',salePrice='%f']",
+                itemId,name,msrp,salePrice);
+    }
 
 
     @Override
@@ -135,5 +141,6 @@ public class Item {
                 "Item[itemId='%d',name='%s',msrp='%f',salePrice='%f',upc='%d',shortDescription='%s',brandName='%s',size='%s',color='%s',gender='%s']",
                 itemId,name,msrp,salePrice,upc,shortDescription,brandName,size,color,gender);
     }
+ 
 
 }
