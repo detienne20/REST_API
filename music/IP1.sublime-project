@@ -1,0 +1,15 @@
+{
+	"build_systems":
+	[
+		{
+			"name": "Maven Build",
+			"shell_cmd": "(cd /Users/Dania/Desktop/Fall2018/WebApps/Assign1/MusicRESTfulWebService/music && mvn clean compile war:war) && /Library/Tomcat/bin/shutdown.sh && /Library/Tomcat/bin/startup.sh"
+		}
+	],
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	]
+}
